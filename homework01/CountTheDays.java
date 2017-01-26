@@ -4,7 +4,7 @@
  *  Author        :  B.J. Johnson (prototype)
  *  Date          :  2017-01-02 (prototype)
  *  Author        :  <Hayato Hori>
- *  Date          :  <dJanuary 26th, 2017>
+ *  Date          :  <dJanuary 19th, 2017>
  *  Description   :  This file provides the supporting methods for the CountTheDays program which will
  *                   calculate the number of days between two dates.  It shows the use of modularization
  *                   when writing Java code, and how the Java compiler can "figure things out" on its
@@ -21,16 +21,7 @@
  *           -----  ----------  ------------  -----------------------------------------------------------
  *  @version 1.0.0  2017-01-02  B.J. Johnson  Initial writing and release
  */
-public class CountTheDays {
-   
-   public static void main (String args[]) {
-      Long[] convert = new Long[args.length];
-      for (int i = 0; i < args.length; i++) {
-         convert[i] = Long.valueOf(args[i]);
-      }
-
-      System.out.println(daysBetween((long)convert[0], (long)convert[1], (long)convert[2], (long)convert[3], (long)convert[4], (long)convert[5]));
-   }
+public class CalendarStuff {
 
   /**
    * A listing of the days of the week, assigning numbers; Note that the week arbitrarily starts on Sunday
@@ -68,7 +59,7 @@ public class CountTheDays {
   /**
    * The constructor for the class
    */
-   public CountTheDays() {
+   public CalendarStuff() {
       System.out.println( "Constructor called..." );
    }
 
@@ -255,5 +246,17 @@ public class CountTheDays {
          }
       }
       return dayCount;
+   }
+
+   public static void main (String args[]) {
+      if (args.length != 6) {
+         System.out.println("Please enter six valid arguments");
+      } else {
+         Long[] convert = new Long[args.length];
+         for (int i = 0; i < args.length; i++) {
+            convert[i] = Long.valueOf(args[i]);
+         }
+         System.out.println(daysBetween((long)convert[0], (long)convert[1], (long)convert[2], (long)convert[3], (long)convert[4], (long)convert[5]));
+      }
    }
 }
