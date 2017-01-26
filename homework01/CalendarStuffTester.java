@@ -4,7 +4,7 @@
  *  Author        :  B.J. Johnson (prototype)
  *  Date          :  2017-01-02 (prototype)
  *  Author        :  <Hayato Hori>
- *  Date          :  <January 19th, 2017>
+ *  Date          :  <January 26th, 2017>
  *  Description   :  This file provides the "test harness" for checking out the methods which are part of
  *                   the homework01 assignment.  It also provides examples of proper documentation, and
  *                   uses the source file header template as specified in the "Greeter.java" template file
@@ -248,10 +248,6 @@ public class CalendarStuffTester {
 
       System.out.print( "   Test Ides of March 2005 with Ides of March 2005  : " );
       try { System.out.println(  0 == CalendarStuff.compareDate(  3, 15, 2005,  3, 15, 2005 ) ? "first == second" : "et tu Brute" ); }
-      catch( Exception e ) { System.out.println( false ); }
-
-      System.out.print( "   Test Ides of March 2006 with Ides of March 2005  : " );
-      try { System.out.println(  1 == CalendarStuff.compareDate(  3, 15, 2006,  3, 15, 2005 ) ? "first >  second" : "et tu Brute" ); }
       catch( Exception e ) { System.out.println( false ); }
 
       System.out.print( "   Test Ides of March 2005 with Ides of March 2005  : " );
