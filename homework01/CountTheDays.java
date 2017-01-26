@@ -1,5 +1,5 @@
 /**
- *  File name     :  CalendarStuff.java
+ *  File name     :  CountTheDays.java
  *  Purpose       :  Provides a class with supporting methods for CountTheDays.java program
  *  Author        :  B.J. Johnson (prototype)
  *  Date          :  2017-01-02 (prototype)
@@ -21,7 +21,7 @@
  *           -----  ----------  ------------  -----------------------------------------------------------
  *  @version 1.0.0  2017-01-02  B.J. Johnson  Initial writing and release
  */
-public class CalendarStuff {
+public class CountTheDays {
 
   /**
    * A listing of the days of the week, assigning numbers; Note that the week arbitrarily starts on Sunday
@@ -59,7 +59,7 @@ public class CalendarStuff {
   /**
    * The constructor for the class
    */
-   public CalendarStuff() {
+   public CountTheDays() {
       System.out.println( "Constructor called..." );
    }
 
