@@ -4,7 +4,7 @@
  *  Author        :  B.J. Johnson (prototype)
  *  Date          :  2017-01-02 (prototype)
  *  Author        :  <Hayato Hori>
- *  Date          :  <dJanuary 19th, 2017>
+ *  Date          :  <dJanuary 26th, 2017>
  *  Description   :  This file provides the supporting methods for the CountTheDays program which will
  *                   calculate the number of days between two dates.  It shows the use of modularization
  *                   when writing Java code, and how the Java compiler can "figure things out" on its
@@ -139,15 +139,28 @@ public class CalendarStuff {
 
       if (year1 > year2) {
          num = 1;
-      } else if (year1 == year2 && month1 < month2) {
-         num = -1;
-      } else if (year1 == year2 && month1 == month2 && day1 == day2) {
-         num = 0;
       } else {
          num = -1;
       }
 
+      if (year1 == year2 && month1 > month2) {
+         num = 1;
+      }  else {
+         num = -1;
+      }
+
+      if (year1 == year2 && month1 == month2 && day1 > day2) {
+         num = 1;
+      } else {
+         num = -1;
+      }
+
+      if (year1 == year2 && month1 == month2 && day1 == day2) {
+         num = 0;
+      }
+
       return num;
+         
    }
 
   /**
