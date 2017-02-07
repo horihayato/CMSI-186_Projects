@@ -40,7 +40,7 @@ public class StringStuffTester {
    * test method to test out the operation of the isPalindrome method
    */
    public static void test_isPalindrome() {
-      System.out.println( " FOUR TESTS FOR isPalindrome():" );
+      System.out.println( " FIVE TESTS FOR isPalindrome():" );
 
       System.out.print( "   Test for isPalindrome: " );
       try { System.out.println( StringStuff.isPalindrome("aba") ? "true" : "false" ); }
