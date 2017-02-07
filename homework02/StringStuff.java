@@ -231,9 +231,11 @@ public class StringStuff {
       System.out.println( "evensOnly()        returns: " + evensOnly( "Hey Whats good" ) );
       System.out.println( "evensOnly()        returns: " + evensOnly( "REhearSALsz" ) );
       System.out.println( "evensOnlyNoDupes() returns: " + evensOnlyNoDupes( "REhearSALsz" ) );
+      System.out.println( "evensOnlyNoDupes() returns: " + evensOnlyNoDupes( "Soccer" ) );
       System.out.println( "oddsOnly()         returns: " + oddsOnly( "xylophones" ) );
       System.out.println( "oddsOnly()         returns: " + oddsOnly( "XYloPHonES" ) );
       System.out.println( "oddsOnlyNoDupes()  returns: " + oddsOnlyNoDupes( "XYloPHonES" ) );
+      System.out.println( "oddsOnlyNoDupes()  returns: " + oddsOnlyNoDupes( "Hayato" ) );
       System.out.println( "reverse()          returns: " + reverse( "REHEARSALSZ" ) );
    }
 }
