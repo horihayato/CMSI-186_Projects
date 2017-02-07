@@ -2,7 +2,7 @@
  *  File name     :  StringStuff.java
  *  Purpose       :  A file full of stuff to do with the Java String class
  *  Author        :  Hayato Hori
- *  Date          :  2017-01-26
+ *  Date          :  2017-02-07
  *  Description   :  This file presents a bunch of String-style helper methods.  Although pretty much
  *                   any and every thing you'd want to do with Strings is already made for you in the
  *                   Jave String class, this exercise gives you a chance to do it yourself [DIY] for some
@@ -34,7 +34,7 @@ public class StringStuff {
    */
    public static boolean containsVowel( String s ) {
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Invalid input");
+         System.out.println("Invalid input");
       } try {
          for (int i = 0; i < s.length(); i++) {
             switch (s.charAt(i)) {
@@ -69,7 +69,7 @@ public class StringStuff {
    */
    public static boolean isPalindrome( String s ) {
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          int n = s.length();
          for (int i = 0; i < n/2; i++) {
@@ -95,7 +95,7 @@ public class StringStuff {
    public static String evensOnly( String s ) {
       String keep = "";
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) % 2 != 1) {
@@ -119,7 +119,7 @@ public class StringStuff {
    public static String oddsOnly( String s ) {
       String keep = "";
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) % 2 == 1) {
@@ -144,7 +144,7 @@ public class StringStuff {
       String temp = evensOnly(s);
 
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          for (int i = 0; i < temp.length(); i++) {
             if (!result.contains(String.valueOf(temp.charAt(i)))) {
@@ -169,7 +169,7 @@ public class StringStuff {
       String temp = oddsOnly(s);
 
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          for (int i = 0; i < temp.length(); i++) {
             if (!result.contains(String.valueOf(temp.charAt(i)))) {
@@ -192,7 +192,7 @@ public class StringStuff {
       String reverse = "";
 
       if (s.length() == 0) {
-         throw new IllegalArgumentException("Please enter a String with length longer than 0");
+         System.out.println("Please enter a String with length longer than 0");
       } try {
          for (int i = 0; i < s.length(); i++) {
             reverse += s.charAt(s.length() - 1 - i);
@@ -215,7 +215,7 @@ public class StringStuff {
       String pal2 = new String( "ab" );
       String pal3 = new String( "aba" );
       String pal4 = new String( "amanaplanacanalpanama" );
-      String pal5 = new String( "abba" );
+      String pal5 = new String( "1234" );
       System.out.println( containsVowel( blah ) );
       System.out.println( containsVowel( woof ) );
       System.out.println( isPalindrome( pal1 ) );
@@ -223,7 +223,12 @@ public class StringStuff {
       System.out.println( isPalindrome( pal3 ) );
       System.out.println( isPalindrome( pal4 ) );
       System.out.println( isPalindrome( pal5 ) );
+      System.out.println( containsVowel( "-2341 324"));
+      System.out.println( "reverse()          returns: " + reverse("123"));
+      System.out.println( "reverse()          returns: " + reverse(""));
+      System.out.println( "reverse()          returns: " + reverse("Yo Whats UP!!!"));
       System.out.println( "evensOnly()        returns: " + evensOnly( "REHEARSALSZ" ) );
+      System.out.println( "evensOnly()        returns: " + evensOnly( "Hey Whats good" ) );
       System.out.println( "evensOnly()        returns: " + evensOnly( "REhearSALsz" ) );
       System.out.println( "evensOnlyNoDupes() returns: " + evensOnlyNoDupes( "REhearSALsz" ) );
       System.out.println( "oddsOnly()         returns: " + oddsOnly( "xylophones" ) );
