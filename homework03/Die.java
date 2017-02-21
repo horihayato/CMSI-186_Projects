@@ -1,24 +1,29 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File name     :  DiceSet.java
- *  Purpose       :  Provides a class describing a set of dice
- *  Author        :  Hayato Hori
+ *  File name     :  Die.java
+ *  Purpose       :  Provides a class describing a single die that can be rolled
+ *  @author       :  Hayato Hori
  *  Date          :  2017-02-21
- *  Description   :  This class provides everything needed (pretty much) to describe a set of dice.  The
- *                   idea here is to have an implementing class that uses the Die.java class.  Includes
- *                   the following:
- *                   public DiceSet( int k, int n );                  // Constructor for a set of k dice each with n-sides
- *                   public int sum();                                // Returns the present sum of this set of dice
- *                   public void roll();                              // Randomly rolls all of the dice in this set
- *                   public void rollIndividual( int i );             // Randomly rolls only the ith die in this set
- *                   public int getIndividual( int i );               // Gets the value of the ith die in this set
- *                   public void setIndividual( int i, int jValue );  // Sets the ith die in this set to the value of jValue
- *                   public String toString();                        // Returns a stringy representation of this set of dice
- *                   public static String toString( DiceSet ds );     // Classwide version of the preceding instance method
- *                   public boolean isIdentical( DiceSet ds );        // Returns true iff this set is identical to the set ds
- *                   public static void main( String[] args );        // The built-in test program for this class
+ *  Description   :  This class provides the data fields and methods to describe a single game die.  A
+ *                   die can have "N" sides.  Sides are randomly assigned sequential pip values, from 1
+ *                   to N, with no repeating numbers.  A "normal" die would thus has six sides, with the
+ *                   pip values [spots] ranging in value from one to six.  Includes the following:
+ *                   public Die( int nSides );                  // Constructor for a single die with "N" sides
+ *                   public int roll();                         // Roll the die and return the result
+ *                   public int getSides()                      // get the number of sides on this die     
+ *                   public int getValue()                      // get the value of this die
+ *                   public void setSides()                     // change the configuration and return the new number of sides
+ *                   public String toString()                   // Instance method that returns a String representation
+ *                   public static String toString()            // Class-wide method that returns a String representation
+ *                   public static void main( String args[] );  // main for testing porpoises
  *
- *  Notes         :  Stolen from Dr. Dorin pretty much verbatim, then modified to show some interesting
- *                   things about Java, and to add this header block and some JavaDoc comments.
+ *  Notes         :  Restrictions: no such thing as a "two-sided die" which would be a coin, actually.
+ *                   Also, no such thing as a "three-sided die" which is a physical impossibility without
+ *                   having it be a hollow triangular prism shape, presenting an argument as to whether
+ *                   the inner faces are faces which then should be numbered.  Just start at four for
+ *                   minimum number of faces.  However, be aware that a four-sided die dosn't have a top
+ *                   face to provide a value, since it's a tetrahedron [pyramid] so you'll have to figure
+ *                   out a way to get the value, since it won't end up on its point.
+ *
  *  Warnings      :  None
  *  Exceptions    :  IllegalArgumentException when the number of sides or pips is out of range
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,153 +31,104 @@
  *  ---------------
  *            Rev      Date     Modified by:  Reason for change/modification
  *           -----  ----------  ------------  -----------------------------------------------------------
- *  @version 1.0.0  2017-02-09  B.J. Johnson  Initial writing and release
+ *  @version 1.0.0  2017-02-06  B.J. Johnson  Initial writing and release
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-public class DiceSet {
+public class Die {
 
   /**
    * private instance data
    */
    private int sides;
-   private int count; 
-   private Die[] dieArray;
+   private int dots;
+   private int MINIMUM_SIDES = 4;
+
    // public constructor:
   /**
    * constructor
-   * @param  count int value containing total dice count
-   * @param  sides int value containing the number of pips on each die
-   * @throws IllegalArgumentException if one or both arguments don't make sense
-   * @note   parameters are checked for validity; invalid values throw "IllegalArgumentException"
+   * @param sides int value containing THIS card's rank
+   * @throws      IllegalArgumentException
+   * Note: parameter must be checked for validity; invalid value must throw "IllegalArgumentException"
    */
-   public DiceSet( int count, int sides ) {
-      dieArray = new Die[count];
-        for (int i = 0; i < dieArray.length; i++) {
-            dieArray[i] = new Die(sides);
-        }  
-   }
-
-  /**
-   * @return the sum of all the dice values in the set
-   */
-   public int sum() {
-      int sum = 0;
-      for (int i = 0; i < dieArray.length; i++) {
-         sum += dieArray[i].getValue();
+   public Die( int nSides ) {
+      if (nSides < MINIMUM_SIDES || nSides > 120) {
+         System.out.println("Invalid number of sides");
       }
-      return sum;
+      this.sides = nSides;
+      this.dots = 1;
    }
 
   /**
-   * Randomly rolls all of the dice in this set
+   * Roll the die and return the result
+   * @return  integer value of the result of the roll, whatever would be on top, randomly selected
+   * @throws  IllegalArgumentException
    */
-   public void roll() {
-      for (int i = 0; i < dieArray.length; i++) {
-         System.out.println(dieArray[i].roll());
-      }
+   public int roll() {
+      dots = (int) (Math.random() * sides) + 1;
+      return dots;
    }
 
   /**
-   * Randomly rolls a single die of the dice in this set
-   * @param  dieIndex int of which die to roll
-   * @trhows IllegalArgumentException if the index is out of range
+   * @return the side count of THIS die instance
    */
-   public void rollIndividual( int dieIndex ) {
-      if (dieIndex > dieArray.length) {
-         throw new IllegalArgumentException("Index out of bounds");
-      }
-      System.out.println(dieArray[dieIndex].roll());
+   public int getSides() {
+       return this.sides;
    }
 
   /**
-   * Gets the value of the die in this set indexed by 'dieIndex'
-   * @param  dieIndex int of which die to roll
-   * @trhows IllegalArgumentException if the index is out of range
+   * @return the pip count of THIS die instance; whatever is on top when the die stops rolling
    */
-   public int getIndividual( int dieIndex ) {
-      if (dieIndex > dieArray.length) {
-         throw new IllegalArgumentException("Index out of bounds");
-      }
-      return dieArray[dieIndex].getValue();
+   public int getValue() {
+      return this.dots;
+   }
+
+   public int setValue(int dieValue) {
+      return this.dots = dieValue;
    }
 
   /**
-   * Gets the value of the die in this set indexed by 'dieIndex'
-   * @param  dieIndex int of which die to set the value of
-   * @param  dieValue int of the value to set for that die
-   * @trhows IllegalArgumentException if the index is out of range
+   * @param  int  the number of sides to set/reset for this Die instance
+   * @return      The new number of sides, in case anyone is looking
+   * @throws      IllegalArgumentException
    */
-   public void setIndividual( int dieIndex, int dieValue ) {
-      if (dieIndex > dieArray.length) {
-         throw new IllegalArgumentException("Index out of bounds");
+   public int setSides( int sides ) {
+      if (sides < MINIMUM_SIDES) {
+         throw new IllegalArgumentException("Please choose valid number of sides");
       }
-
-      System.out.println(dieArray[dieIndex].setValue(dieValue));
+      return this.sides = sides;
    }
 
   /**
-   * @return Public Instance method that returns a String representation of the DiceSet instance
+   * @return Public Instance method that returns a String representation of THIS die instance
+   * @throws UnsupportedOperationException
    */
    public String toString() {
-      String result = "";
-      for (int i = 0; i < dieArray.length; i++) {
-         result += "[" + dieArray[i].getValue() + "]";
-      }  
-      return result;
-   }
-
-  /**
-   * @return Class-wide version of the preceding instance method
-   */
-   public static String toString( DiceSet ds ) {
-      String result = "";
-      for (int i = 0; i < ds.dieArray.length; i++) {
-         result += "[" + ds.dieArray[i].getValue() + "]";
-      }  
-      return result;
-   }
-
-  /**
-   * @return  tru iff this set is identical to the set passed as an argument
-   */
-   public boolean isIdentical( DiceSet ds ) {
-      if (dieArray.length == ds.dieArray.length) {
-         for (int i = 0; i < dieArray.length; i++) {
-            if (ds.dieArray[i].getSides() == dieArray[i].getSides()) {
-               return true;
-            }
-         }
+      if (this.sides < 0) {
+         throw new UnsupportedOperationException();
       }
-      
-      return false;  
+      String toString = Integer.toString(this.sides);
+      return toString;
    }
+
+  /**
+   * @return Class-wide method that returns a String representation of THIS die instance
+   */
+   public static String toString( Die c ) {
+      String toString = Integer.toString(c.sides);
+      return toString;
+   }
+
   /**
    * A little test main to check things out
    */
    public static void main( String[] args ) {
-      DiceSet ds = new DiceSet(5, 6);
-      DiceSet ds2 = new DiceSet(5, 6);
-      DiceSet ds3 = new DiceSet( 7, 8);
-      DiceSet ds4 = new DiceSet(5, 8);
-      System.out.println( "Comparing if values are the same: " + ds.isIdentical(ds2));
-      System.out.println( "Comparing if values are the same: " + ds.isIdentical(ds3));
-      System.out.println( "Comparing if values are the same: " + ds.isIdentical(ds4));
-      System.out.println( "The sum of your Dice Set is: " + ds.sum());
-      System.out.println( "Values of dice after roll: ");
-      ds.roll();
-      System.out.println( "The sum of your Dice Set after roll: " + ds.sum());
-      System.out.println( "Rolling an indiviudal dice based on diceIndex...");
-      ds.rollIndividual(3);
-      System.out.println( "The sum of your Dice Set after inidividual roll: " + ds.sum());
-      System.out.println( "Changing value of an individual die... ");
-      ds.setIndividual(3, 9);
-      System.out.println( "Returns Individual value in dice set: " + ds.getIndividual(3));
-      System.out.println( "String representation of your dice set:" + ds.toString());
-      System.out.println( "String representation of your dice set:" + toString(ds));
-      System.out.println( "String representation of your dice set:" + toString(ds3));
-      System.out.println( "Rolling dice..." );
-      ds3.roll();
-      System.out.println( "String representation of your dice set:" + toString(ds3));
-
+      Die d = new Die( 5 );
+      Die c = new Die( 8 ); 
+      System.out.println( "Your roll is " + d.roll());
+      System.out.println( "Your dice has " + d.getSides() + " sides");
+      System.out.println( "You got " + d.getValue() + " on your roll");
+      System.out.println( "You changed the number of sides to " + d.setSides(4));
+      System.out.println( "Your Die now has " + d.toString() + " sides." + " Your previous roll was: " + d.getValue());
+      System.out.println( "Your Die now has " + toString(c) + " sides." + " Your previous roll was: " + c.getValue());
    }
 
 }
