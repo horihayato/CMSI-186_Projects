@@ -51,17 +51,14 @@ public class Clock {
 
       totalSeconds += timeslice;
       this.seconds += timeslice;
-      if (seconds >= 60) {
-         this.minutes += this.seconds / 60;
-         this.seconds = this.seconds % 60;
-      }
-
-      if (this.minutes == 60) {
+      this.minutes += Math.floor(this.seconds / 60);
+      if (minutes >= 60) {
          this.hour++;
-         this.minutes = 0;
+         this.minutes = this.minutes - 60;
       }
+      this.seconds = this.seconds % 60;
 
-      if (this.hour == 12) {
+      if (hour == 12) {
          this.hour = 0;
       }
 
@@ -125,14 +122,17 @@ public class Clock {
    *  @return double-precision value of the angle between the two hands
    */
    public double getHandAngle() {
-      double hourAngle = totalSeconds * 0.00833;
-      double minuteAngle = totalSeconds * 0.1;
-      double difference;
-      if (hourAngle < 180) {
-         difference = Math.abs(hourAngle - minuteAngle);
-      } else {
-         difference = Math.abs(hourAngle - minuteAngle - 360);
+      double hourAngle = (this.hour / 60 + this.minutes) * 0.00833;
+      double minuteAngle = (this.minutes / totalSeconds) * 0.1;
+      double difference = Math.abs(0.00833 * ((this.hour / 60) - (11 / 60) * (this.minutes / 60)));
+      if (hourAngle > 180) {
+         difference = 360 - difference;
       }
+
+      if (hourAngle > hourAngle - 0.1 && hourAngle < hourAngle + 0.1) {
+         difference = 0;
+      }
+
       return difference;
    }
 
@@ -161,8 +161,31 @@ public class Clock {
                           "--------------------------\n" );
       System.out.println( "  Creating a new clock: " );
       Clock clock = new Clock();
-      System.out.println( "Next Clock Tick: " + clock.tick(150));
-      System.out.println( "Next Clock Tick: " + clock.tick(150));
+      System.out.println( "Next Clock Tick: " + clock.tick(120));
+      System.out.println( "Getting Angle Between the Hands " + clock.getHandAngle());
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "    New clock created: " + clock.toString() );
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "    New clock created: " + clock.toString() );
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "    New clock created: " + clock.toString() );
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "    New clock created: " + clock.toString() );
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "    New clock created: " + clock.toString() );
       System.out.println( "Validating Angle Argument..." + clock.validateAngleArg("350"));
       System.out.println( "Validating Time Slice Argument..." + clock.validateTimeSliceArg("1700"));
       System.out.println( "Getting Time of Hour Hand " + clock.getHourHand());
