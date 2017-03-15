@@ -2,7 +2,7 @@
  *  File name     :  Clock.java
  *  Purpose       :  Provides a class defining methods for the ClockSolver class
  *  @author       :  Hayato Hori
- *  Date written  :  2017-02-28
+ *  Date written  :  2017-03-14
  *  Description   :  This class provides a bunch of methods which may be useful for the ClockSolver class
  *                   for Homework 4, part 1.  Includes the following:
  *
@@ -122,14 +122,22 @@ public class Clock {
    *  @return double-precision value of the angle between the two hands
    */
    public double getHandAngle() {
-      double hourAngle = (this.hour / 60 + this.minutes) * 0.00833;
-      double minuteAngle = (this.minutes / totalSeconds) * 0.1;
-      double difference = Math.abs(0.00833 * ((this.hour / 60) - (11 / 60) * (this.minutes / 60)));
-      if (hourAngle > 180) {
+      double hourAngle = totalSeconds * 0.00833;
+      double minuteAngle = totalSeconds * 0.1;
+      if (minuteAngle >= 360) {
+         minuteAngle = minuteAngle % 360;
+      }
+
+      double difference = Math.abs(hourAngle - minuteAngle);
+      if (difference > 180) {
          difference = 360 - difference;
       }
 
-      if (hourAngle > hourAngle - 0.1 && hourAngle < hourAngle + 0.1) {
+      if (difference > 360 - 0.1 && difference < 360 + 0.1) {
+         difference = 0;
+      }
+
+      if (difference > 0 - 0.1 && difference < 0 + 0.1) {
          difference = 0;
       }
 
@@ -163,6 +171,8 @@ public class Clock {
       Clock clock = new Clock();
       System.out.println( "Next Clock Tick: " + clock.tick(120));
       System.out.println( "Getting Angle Between the Hands " + clock.getHandAngle());
+      System.out.println( "Next Clock Tick: " + clock.tick(120));
+      System.out.println( "Getting Angle Between the Hands " + clock.getHandAngle());
       System.out.println( "Next Clock Tick: " + clock.tick(1000));
       System.out.println( "    New clock created: " + clock.toString() );
       System.out.println( "Next Clock Tick: " + clock.tick(1000));
@@ -193,8 +203,8 @@ public class Clock {
       System.out.println( "Getting Angle Between the Hands " + clock.getHandAngle());
       System.out.println( "    New clock created: " + clock.toString() );
       System.out.println( "    Testing validateAngleArg()....");
-      System.out.print( "      sending '  0 degrees', expecting double value   0.0" );
-      try { System.out.println( (0.0 == clock.validateAngleArg( "0.0" )) ? " - got   0.0" : " - no joy" ); }
+      System.out.print( "      sending '  350 degrees', expecting double value   350.0" );
+      try { System.out.println( (350 == clock.validateAngleArg( "350" )) ? " - got   350" : " - no joy" ); }
       catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
    }
 }
