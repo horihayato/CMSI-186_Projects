@@ -8,7 +8,7 @@
  *                   for Homework 4, part 1.  Includes the following:
   *
  *  Notes         :  None right now.  I'll add some as they occur.
- *  Warnings      :  None
+ *  Warnings      :  Margin of error is 4 degrees when looking for angle between hands and the corresponding angle you are looking for.
  *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  Revision Histor
@@ -24,7 +24,6 @@ public class ClockSolver {
    */
    private final double MAX_TIME_SLICE_IN_SECONDS  = 1800.00;
    private final double DEFAULT_TIME_SLICE_SECONDS = 60.0;
-   private final double EPSILON_VALUE              = 0.1;      // small value for double-precision comparisons
 
   /**
    *  Constructor
@@ -76,7 +75,7 @@ public class ClockSolver {
       if (args.length == 1) {
         while (clock.tick(60) < 43200) {
           clock.tick(60);
-          if ((angleDouble - 0.1 < clock.getHandAngle()) && (angleDouble + 0.1 > clock.getHandAngle())) {
+          if ((angleDouble - 4 < clock.getHandAngle()) && (angleDouble + 4 > clock.getHandAngle())) {
             System.out.println(clock.toString());
           }
         }
@@ -86,7 +85,7 @@ public class ClockSolver {
         timeSliceDouble = Double.parseDouble(args[1]);
         while (clock.tick(timeSliceDouble) < 43200) {
           clock.tick(timeSliceDouble);
-          if ((angleDouble - 0.1 < clock.getHandAngle()) && (angleDouble + 0.1 > clock.getHandAngle())) {
+          if ((angleDouble - 4 < clock.getHandAngle()) && (angleDouble + 4 > clock.getHandAngle())) {
             System.out.println(clock.toString());
         }
       }
