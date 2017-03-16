@@ -207,7 +207,7 @@ public class Clock {
       System.out.println( "    New clock created: " + clock.toString() );
       System.out.println( "Next Clock Tick: " + clock.tick(1000));
       System.out.println( "    New clock created: " + clock.toString() );
-      System.out.println( "Next Clock Tick: " + clock.tick(1000));
+      System.out.println( "Next Clock Tick: " + clock.tick(1000.1999));
       System.out.println( "    New clock created: " + clock.toString() );
       System.out.println( "Validating Angle Argument..." + clock.validateAngleArg("350"));
       System.out.println( "Validating Time Slice Argument..." + clock.validateTimeSliceArg("1700"));
