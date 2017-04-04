@@ -1,3 +1,16 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File name     :  SoccerSim.java
+ *  Purpose       :  Provides a class defining methods for the SoccerSim class
+ *  @author       :  Hayato Hori
+ *  Date written  :  2017-04-04
+ *  Description   :  This class provides a bunch of methods which may be useful for the SoccerSim class
+ *                   for Homework 5, part 1.  Includes the following:
+ *
+ *  Notes         :  None right now.  I'll add some as they occur.
+ *  Warnings      :  None
+ *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 import java.lang.*;
 
 public class SoccerSim  {
@@ -35,15 +48,15 @@ public class SoccerSim  {
             // Moves each ball according to its speed
             for (int i = 0; i < ballArray.length; i++) {
                System.out.println("\n Ball: " + i);
-               ballArray[i].moveBall(tickTime);
+               ballArray[i].moveBall(Double.parseDouble(args[args.length - 1]));
                ballArray[i].getBothPosition();
             }
 
             // Compares each ball to see if they collide with each other
-            for (int i = 0; i < ballArray.length - 2; i++) {
-               for (int j = i + 1; j < ballArray.length - 1; j++) {
+            for (int i = 0; i < ballArray.length; i++) {
+               for (int j = i + 1; j < ballArray.length; j++) {
                   if (ballArray[i].isColliding(ballArray[j])) {
-                     System.out.println("\n Ball1: " + ballArray[i].getXPosition() + ", " + ballArray[i].getYPosition() + " is colliding with Ball2: " + ballArray[j].getXPosition() + ", " + ballArray[j].getYPosition());
+                     System.out.println("\n Ball " + i + ": " + ballArray[i].getXPosition() + ", " + ballArray[i].getYPosition() + " is colliding with Ball " + j + ": " + ballArray[j].getXPosition() + ", " + ballArray[j].getYPosition());
                      return;
                   } else {
                      continue;
