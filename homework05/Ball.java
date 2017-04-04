@@ -19,10 +19,10 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 public class Ball {
-	int weight;
-	double radius;
-	double xPosition;
-	double yPosition;
+   int weight;
+   double radius;
+   double xPosition;
+   double yPosition;
    private final double xTemp;
    private final double yTemp;
    double xSpeed;
@@ -30,31 +30,31 @@ public class Ball {
    private final double xTempSpeed;
    private final double yTempSpeed;
 
-	/**
+   /**
    *  Constructor
-  	*  This makes a ball with weight 1, radius 4.45, and initializes position at 0,0
- 	*/
+   *  This makes a ball with weight 1, radius 4.45, and initializes position at 0,0
+   */
 
-	public Ball(double x, double y, double xSpd, double ySpd) {
-		weight = 1;
-		radius = 0.37;
-		xPosition = x;
-		yPosition = y;
+   public Ball(double x, double y, double xSpd, double ySpd) {
+      weight = 1;
+      radius = 0.37;
+      xPosition = x;
+      yPosition = y;
       xTemp = x;
       yTemp = y;
       xSpeed = xSpd;
       ySpeed = ySpd;
       xTempSpeed = xSpd;
       yTempSpeed = ySpd;
-	}
+   }
 
-	public double getRadius() {
-		return radius;
-	}
+   public double getRadius() {
+      return radius;
+   }
 
-	public int getWeight() {
-		return weight;
-	}
+   public int getWeight() {
+      return weight;
+   }
 
    public void getBothPosition() {
       String s = "";
@@ -64,13 +64,13 @@ public class Ball {
       System.out.println(s + ", " + s1);
    }
 
-	public double getXPosition() {
-		return xPosition;
-	}
+   public double getXPosition() {
+      return xPosition;
+   }
 
-	public double getYPosition() {
-		return yPosition;
-	}
+   public double getYPosition() {
+      return yPosition;
+   }
 
    public double getXSpeed(double xVel, double seconds) {
       xSpeed = (xVel * seconds) * (1 - (0.01 * seconds));
@@ -82,28 +82,32 @@ public class Ball {
       return ySpeed;
    }
 
-	public void setPosition(double x, double y) {
-		xPosition = x;
-		yPosition = y;
-	}
+   public void setPosition(double x, double y) {
+      xPosition = x;
+      yPosition = y;
+   }
 
    public void moveBall(double seconds) {
-      double friction = (1 - (0.01 * seconds));
+      if ((Math.sqrt(xSpeed * xSpeed + ySpeed * ySpeed) > 0.083)) {
 
-      xPosition = xTemp + (xTempSpeed * seconds) * friction;
-      yPosition = yTemp + (yTempSpeed * seconds) * friction;
-
-      if (getXSpeed(xTempSpeed, seconds) <= 0.083) {
-         xSpeed = 0;
-      }
-
-      if (getYSpeed(yTempSpeed, seconds) <= 0.083) {
-         ySpeed = 0;
+         while (seconds >= 1.0) {
+           xPosition += xSpeed;
+           yPosition += ySpeed;
+           xSpeed -= 0.01 * xSpeed;
+           ySpeed -= 0.01 * ySpeed;
+           seconds -= 1.0;
+         }
+         if (seconds > 0.0) {
+           xPosition += xSpeed * seconds;
+           yPosition += ySpeed * seconds;
+           xSpeed -= 0.01 * xSpeed * seconds;
+           ySpeed -= 0.01 * ySpeed * seconds;
+         }
       }
    }
 
    public boolean isZeroVelocity() {
-      if (xSpeed <= 0.085 && ySpeed <= 0.085) {
+      if (xSpeed <= 0.083 && ySpeed <= 0.083) {
          return true;
       }
 
@@ -124,17 +128,17 @@ public class Ball {
    }
 
 
-	public static void main(String args[]) {
-		Ball b = new Ball(1, 2, 3, 3);
-		System.out.println("\n Testing Ball Class...");
-		System.out.println("The radius of the ball is " + b.getRadius() + " feet");
-		System.out.println("The weight of the ball is " + b.getWeight());
-		System.out.println("The xPosition of the ball is " + b.getXPosition());
-		System.out.println("The yPosition of the ball is " + b.getYPosition());
-		System.out.println("\n Setting new ball position...");
-		b.setPosition(1, 2);
-		System.out.println("The new xPosition of the ball is " + b.getXPosition());
-		System.out.println("The new yPosition of the ball is " + b.getYPosition());
+   public static void main(String args[]) {
+      Ball b = new Ball(1, 2, 3, 3);
+      System.out.println("\n Testing Ball Class...");
+      System.out.println("The radius of the ball is " + b.getRadius() + " feet");
+      System.out.println("The weight of the ball is " + b.getWeight());
+      System.out.println("The xPosition of the ball is " + b.getXPosition());
+      System.out.println("The yPosition of the ball is " + b.getYPosition());
+      System.out.println("\n Setting new ball position...");
+      b.setPosition(1, 2);
+      System.out.println("The new xPosition of the ball is " + b.getXPosition());
+      System.out.println("The new yPosition of the ball is " + b.getYPosition());
       b.getBothPosition();
       System.out.println("\n Moving ball...");
       b.moveBall(5);
@@ -150,5 +154,5 @@ public class Ball {
       Ball c = new Ball(3, 3, 4, 1);
       System.out.println("The distance between the two balls " + b.getDistance(c));
       System.out.println("Are the balls colliding? " + b.isColliding(c));
-	}
+   }
  }
