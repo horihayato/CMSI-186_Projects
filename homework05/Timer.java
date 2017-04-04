@@ -2,19 +2,13 @@
  *  File name     :  Timer.java
  *  Purpose       :  Provides a class defining methods for the Timer class
  *  @author       :  Hayato Hori
- *  Date written  :  2017-03-14
+ *  Date written  :  2017-04-04
  *  Description   :  This class provides a bunch of methods which may be useful for the SoccerSim class
  *                   for Homework 5, part 1.  Includes the following:
  *
  *  Notes         :  None right now.  I'll add some as they occur.
  *  Warnings      :  None
  *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  Revision Histor
- *  ---------------
- *            Rev      Date     Modified by:  Reason for change/modification
- *           -----  ----------  ------------  -----------------------------------------------------------
- *  @version 1.0.0  2017-02-28  B.J. Johnson  Initial writing and release
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 public class Timer {
