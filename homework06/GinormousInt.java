@@ -196,25 +196,17 @@ public class GinormousInt {
 
       // Adds positive numbers
       if (isPositive() == true && g.isPositive() == true) {
-         for (int i = 0; i < smallerArray.length; i++) {
-            combineArray[combineArray.length - i - 1] = ginormousArray[ginormousArray.length - i - 1] + g.ginormousArray[g.ginormousArray.length - i - 1] + carry;
-            if (combineArray[combineArray.length - i - 1] > 9) {
-               carry = 1;
-               combineArray[combineArray.length - i - 1] -= 10;
-            } else {
-               carry = 0;
-            }
-         } 
 
-         if (combineArray[combineArray.length - smallerArray.length] > 9 && carry == 1) {
-            for (int j = 0; j < combineArray.length - smallerArray.length; j++) {
-               combineArray[combineArray.length - smallerArray.length - 1 - j] = combineArray[combineArray.length - smallerArray.length - 1 - j] + carry;
-                if (combineArray[combineArray.length - smallerArray.length - 1 - j] > 9) {
-                  carry = 1;
-                  combineArray[combineArray.length - smallerArray.length - 1 - j] -= 10;
-               } 
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] += smallerArray[smallerArray.length - 1 - i];
+         }
+
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] > 9) {
+               combineArray[combineArray.length - 2 - i] += 1;
+               combineArray[combineArray.length - 1 - i] -= 10;
             }
-         } 
+         }         
          answer = Arrays.toString(combineArray);
       }
       return answer;
