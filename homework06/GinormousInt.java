@@ -40,6 +40,8 @@ public class GinormousInt {
       System.out.println("\n Comparing two GinormousInt. Expecting ... -1 " +  "Got: " + zeroes.compareTo(pos));
       System.out.println("\n Adding two GinormousInt. Expecting ... 246 " +  "Got: " + zeroes.add(zeroes1));
       System.out.println("\n Adding two GinormousInt. Expecting ... 1098 " +  "Got: " + zeroes5.add(zeroes6));
+      System.out.println("\n Adding two GinormousInt. Expecting ... double pos " +  "Got: " + pos.add(pos));
+      System.out.println("\n Adding two GinormousInt. Expecting ... 20246 " +  "Got: " + zeroes3.add(zeroes3));
 
       GinormousInt one = new GinormousInt("1");
       GinormousInt two = new GinormousInt("2");
@@ -209,6 +211,24 @@ public class GinormousInt {
          }         
          answer = Arrays.toString(combineArray);
       }
+
+      // Adds negative numbers
+      if (isPositive() == false && g.isPositive() == false) {
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] += smallerArray[smallerArray.length - 1 - i];
+         }
+
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] > 9) {
+               combineArray[combineArray.length - 2 - i] += 1;
+               combineArray[combineArray.length - 1 - i] -= 10;
+            }
+         }
+
+         answer = "-" + Arrays.toString(combineArray);
+      }
+
+
       return answer;
    }
    
