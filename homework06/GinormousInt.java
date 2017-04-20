@@ -241,7 +241,7 @@ public class GinormousInt {
             combineArray[combineArray.length - 1 - i] += smallerArray[smallerArray.length - 1 - i];
          }
 
-         for (int i = 0; i < combineArray.length; i++) {
+         for (int i = 0; i < combineArray.length - 1; i++) {
             if (combineArray[combineArray.length - 1 - i] > 9) {
                combineArray[combineArray.length - 2 - i] += 1;
                combineArray[combineArray.length - 1 - i] -= 10;
