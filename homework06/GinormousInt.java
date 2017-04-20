@@ -1,3 +1,18 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File name     :  GinormousInt.java
+ *  Purpose       :  Provides a class defining methods for the GinormousInt class
+ *  @author       :  Hayato Hori
+ *  Date written  :  2017-04-20
+ *  Description   :  This class provides a bunch of methods which may be useful for the GinormousInt class
+ *                   for Homework 6.  Includes the following:
+ *
+ *  Notes         :  Have not completed Multiplication and Division. Subtraction and Addition should work perfectly fine!
+ *  Warnings      :  None
+ *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
 import java.lang.String;
 import java.lang.StringBuffer;
 import java.lang.Object;
