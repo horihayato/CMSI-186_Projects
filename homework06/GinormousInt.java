@@ -57,6 +57,7 @@ public class GinormousInt {
       System.out.println("\n Is -3412343214132412342343241341324123421432341243214131 positive? " + neg.isPositive());
       System.out.println("\n Is 3412343214132412342343241341324123421432341243214131 positive? " + pos.isPositive());
       System.out.println("\n Comparing two GinormousInt. Expecting ... 0 " +  "Got: " + zeroes.compareTo(zeroes1));
+      System.out.println("\n Comparing two GinormousInt. Expecting ... true " +  "Got: " + zeroes.equals(zeroes1));
       System.out.println("\n Comparing two GinormousInt. Expecting ... 1 " +  "Got: " + zeroes.compareTo(neg));
       System.out.println("\n Comparing two GinormousInt. Expecting ... -1 " +  "Got: " + zeroes.compareTo(pos));
       System.out.println("\n Adding two GinormousInt. Expecting ... 246 " +  "Got: " + zeroes.add(zeroes1));
@@ -71,9 +72,9 @@ public class GinormousInt {
       System.out.println("\n Subtracting two GinormousInt. Expecting ... -75 " +  "Got: " + zeroes11.subtract(zeroes12));
       System.out.println("\n Subtracting two GinormousInt. Expecting ... 0 " +  "Got: " + zeroes11.subtract(zeroes11));
 
-      GinormousInt one = new GinormousInt("1");
-      GinormousInt two = new GinormousInt("2");
-      System.out.println("\n Adding two GinormousInt. Expecting ... 3 " +  "Got: " + one.add(two));
+      GinormousInt one = new GinormousInt("8");
+      GinormousInt two = new GinormousInt("5");
+      System.out.println("\n Adding two GinormousInt. Expecting ... 13 " +  "Got: " + one.add(two));
    }
 
 	public GinormousInt( String value ) {
@@ -200,6 +201,15 @@ public class GinormousInt {
          return -1;
       }
    }
+
+   // returns true iff x is a GinormousInt whose value is numerically equal to this GinormousInt
+   public boolean equals(GinormousInt g) {
+      if (compareTo(g) == 0) {
+         return true;
+      }
+      return false;
+   }
+
    
 
    // returns a GinormousInt whose value is the sum of this plus the argument
@@ -237,7 +247,11 @@ public class GinormousInt {
                combineArray[combineArray.length - 1 - i] -= 10;
             }
          }         
-         answer = Arrays.toString(combineArray);
+         StringBuffer result = new StringBuffer();
+         for (int i = 0; i < combineArray.length; i++) {
+            result.append(combineArray[i]);
+         }
+         answer = result.toString();
       }
 
       // Adds negative numbers
@@ -252,14 +266,21 @@ public class GinormousInt {
                combineArray[combineArray.length - 1 - i] -= 10;
             }
          }
-
-         answer = "-" + Arrays.toString(combineArray);
+         StringBuffer result = new StringBuffer();
+         for (int i = 0; i < combineArray.length; i++) {
+            result.append(combineArray[i]);
+         }
+         answer = "-" + result.toString();
       }
 
       // Adds one positive number and one negative number
       if (isPositive() == true && g.isPositive() == false || isPositive() == false && g.isPositive() == true) {
          subtract(g);
-         answer = Arrays.toString(ginormousArray);  
+         StringBuffer result = new StringBuffer();
+         for (int i = 0; i < ginormousArray.length; i++) {
+            result.append(ginormousArray[i]);
+         }
+         answer = result.toString();
       }
 
 
@@ -304,9 +325,17 @@ public class GinormousInt {
          }
 
          if (compareTo(g) == 1 || compareTo(g) == 0) {
-            answer = Arrays.toString(combineArray);            
+            StringBuffer result = new StringBuffer();
+            for (int i = 0; i < combineArray.length; i++) {
+               result.append(combineArray[i]);
+            }
+            answer = result.toString();           
          } else {
-            answer = "-" + Arrays.toString(combineArray);
+            StringBuffer result = new StringBuffer();
+            for (int i = 0; i < combineArray.length; i++) {
+               result.append(combineArray[i]);
+            }
+            answer = "-" + result.toString();
          }
       }
 
@@ -322,7 +351,11 @@ public class GinormousInt {
                combineArray[combineArray.length - 1 - i] -= 10;
             }
          }         
-         answer = Arrays.toString(combineArray);
+         StringBuffer result = new StringBuffer();
+         for (int i = 0; i < combineArray.length; i++) {
+            result.append(combineArray[i]);
+         }
+         answer = result.toString();
       } 
 
       // Subtracts if first one is negative and second is positive
@@ -338,7 +371,11 @@ public class GinormousInt {
             }
          }
 
-         answer = "-" + Arrays.toString(combineArray);
+         StringBuffer result = new StringBuffer();
+         for (int i = 0; i < combineArray.length; i++) {
+            result.append(combineArray[i]);
+         }
+         answer = "-" + result.toString();
       }
 
       //Subtracts Both negative numbers
@@ -355,9 +392,17 @@ public class GinormousInt {
          }
 
          if (compareTo(g) == 1 || compareTo(g) == 0) {
-            answer = "-" + Arrays.toString(combineArray);            
+            StringBuffer result = new StringBuffer();
+            for (int i = 0; i < combineArray.length; i++) {
+               result.append(combineArray[i]);
+            }
+            answer = "-" + result.toString();          
          } else {
-            answer = Arrays.toString(combineArray);
+            StringBuffer result = new StringBuffer();
+            for (int i = 0; i < combineArray.length; i++) {
+               result.append(combineArray[i]);
+            }
+            answer = result.toString();
          }
       }
 
