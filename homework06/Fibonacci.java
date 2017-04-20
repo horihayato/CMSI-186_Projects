@@ -15,10 +15,19 @@
 
 public class Fibonacci {
     public static void main(String[] args) {
+    	if (args.length <= 0) {
+    		System.out.println("Please enter a number");
+    	}
+
     	GinormousInt a = null;
     	GinormousInt b = null;
     	GinormousInt c = null;
     	int temp = Integer.parseInt(args[0]);
+
+    	if (temp > 5000) {
+    		System.out.println("\n                            Working......");
+    	}
+
 		if (args.length == 1) {
 			if (temp <= 2) {
 				System.out.println(1);
