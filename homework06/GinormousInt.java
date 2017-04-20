@@ -26,6 +26,12 @@ public class GinormousInt {
       GinormousInt zeroes4 = new GinormousInt("0010123");
       GinormousInt zeroes5 = new GinormousInt("999");
       GinormousInt zeroes6 = new GinormousInt("99");
+      GinormousInt zeroes7 = new GinormousInt("911");
+      GinormousInt zeroes8 = new GinormousInt("99");
+      GinormousInt zeroes9 = new GinormousInt("1");
+      GinormousInt zeroes10 = new GinormousInt("2");
+      GinormousInt zeroes11 = new GinormousInt("-25");
+      GinormousInt zeroes12 = new GinormousInt("50");
       System.out.println("\n Creating a negative GinormousInt: " + neg.toString());
       System.out.println("\n Creating a positive GinormousInt: " + pos.toString());
       System.out.println("\n Creating a positive GinormousInt: " + zeroes.toString());
@@ -41,7 +47,12 @@ public class GinormousInt {
       System.out.println("\n Adding two GinormousInt. Expecting ... 246 " +  "Got: " + zeroes.add(zeroes1));
       System.out.println("\n Adding two GinormousInt. Expecting ... 1098 " +  "Got: " + zeroes5.add(zeroes6));
       System.out.println("\n Adding two GinormousInt. Expecting ... double pos " +  "Got: " + pos.add(pos));
-      System.out.println("\n Adding two GinormousInt. Expecting ... 20246 " +  "Got: " + zeroes3.add(zeroes3));
+      System.out.println("\n Adding two GinormousInt. Expecting ... -20246 " +  "Got: " + zeroes3.add(zeroes3));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... 812 " +  "Got: " + zeroes7.subtract(zeroes8));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... -812 " +  "Got: " + zeroes8.subtract(zeroes7));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... -1 " +  "Got: " + zeroes9.subtract(zeroes10));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... 1 " +  "Got: " + zeroes10.subtract(zeroes9));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... 25 " +  "Got: " + zeroes12.subtract(zeroes11));
 
       GinormousInt one = new GinormousInt("1");
       GinormousInt two = new GinormousInt("2");
@@ -175,7 +186,7 @@ public class GinormousInt {
    
 
    // returns a GinormousInt whose value is the sum of this plus the argument
-   public String add( GinormousInt g ){
+   public String add(GinormousInt g){
       int[] combineArray;
       int carry = 0;
       int[] smallerArray;
@@ -228,16 +239,94 @@ public class GinormousInt {
          answer = "-" + Arrays.toString(combineArray);
       }
 
+      // Adds one positive number and one negative number
+      if (isPositive() == true && g.isPositive() == false || isPositive() == false && g.isPositive() == true) {
+         subtract(g);
+         answer = Arrays.toString(ginormousArray);  
+      }
+
+
 
       return answer;
    }
+
+   
+   // returns a GinormousInt whose value is the difference of this minus the argument
+   public String subtract(GinormousInt g) {
+      int[] combineArray;
+      int carry = 0;
+      int[] smallerArray;
+      String answer = "";
+
+      // Gives one more space in array to combine numbers
+      if (compareTo(g) == 1) {
+         combineArray = new int[ginormousArray.length + 1];
+
+         for(int i = 0; i < ginormousArray.length; ++i) {
+            combineArray[combineArray.length - 1 - i] = ginormousArray[ginormousArray.length - 1 - i];
+         }
+
+         smallerArray = g.ginormousArray.clone();
+      } else {
+         combineArray = new int[g.ginormousArray.length + 1];
+         combineArray = g.ginormousArray.clone();
+         smallerArray = ginormousArray.clone();
+      }
+
+      // Subtracts Both positive numbers
+      if (isPositive() == true && g.isPositive() == true) {
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] -= smallerArray[smallerArray.length - 1 - i];
+         }
+
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] < 0) {
+               combineArray[combineArray.length - 2 - i] -= 1;
+               combineArray[combineArray.length - 1 - i] += 10;
+            }
+         }
+
+         if (compareTo(g) == 1 || compareTo(g) == 0) {
+            answer = Arrays.toString(combineArray);            
+         } else {
+            answer = "-" + Arrays.toString(combineArray);
+         }
+      }
+
+      // Subtracts if one is positive and one is negative
+      if (isPositive() == true && g.isPositive() == false || isPositive() == false && g.isPositive() == true) {
+         if (compareTo(g) == 1 || compareTo(g) == 0) {
+            for (int i = 0; i < smallerArray.length; i++) {
+               combineArray[combineArray.length - 1 - i] -= smallerArray[smallerArray.length - 1 - i];
+            }
+
+            for (int i = 0; i < combineArray.length; i++) {
+               if (combineArray[combineArray.length - 1 - i] < 0) {
+                  combineArray[combineArray.length - 2 - i] -= 1;
+                  combineArray[combineArray.length - 1 - i] += 10;
+               }
+            }
+
+            answer = Arrays.toString(combineArray);
+         } else {
+            answer = "-" + Arrays.toString(combineArray); 
+         }
+      }
+
+
+      //Subtracts Both negative numbers
+      if (isPositive() == false && g.isPositive() == false) {
+         add(g);
+         answer = "-" + Arrays.toString(ginormousArray); 
+      }
+
+      return answer;  
+   }
+   
    
 
 
 /*
-	
-	public GinormousInt subtract( BigInteger value );
-	// returns a GinormousInt whose value is the difference of this minus the argument
 	public GinormousInt multiply( BigInteger value );
 	// returns a GinormousInt whose value is the product of this times the argument
 	public GinormousInt divide( BigInteger value );
