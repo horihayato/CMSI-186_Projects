@@ -414,7 +414,7 @@ public class GinormousInt {
 
 /*
 	public GinormousInt multiply( BigInteger value );
-	// returns a GinormousInt whose value is the product of this times the argument
+	// returns a GinormousInt whose value is the product of this times the argument 
 	public GinormousInt divide( BigInteger value );
 	// returns a GinormousInt whose value is the quotient of this divided by the argument
 	public GinormousInt remainder( BigInteger value );
