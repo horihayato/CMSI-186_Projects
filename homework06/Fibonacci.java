@@ -29,11 +29,15 @@ public class Fibonacci {
     	}
 
 		if (args.length == 1) {
+			if (temp == 0) {
+				System.out.println(0);
+				return;
+			}
 			if (temp <= 2) {
 				System.out.println(1);
 			} else {
-				a = new GinormousInt("0");
-				b = new GinormousInt("1");
+				a = new GinormousInt("1");
+				b = new GinormousInt("2");
 				for (int i = 3; i < temp; i++) {
 					c = new GinormousInt(a.add(b));
 					a = new GinormousInt(b.toString());
