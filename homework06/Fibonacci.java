@@ -15,17 +15,20 @@
 
 public class Fibonacci {
     public static void main(String[] args) {
-    	GinormousInt a = new GinormousInt("01");
-    	GinormousInt b = new GinormousInt("01");
+    	GinormousInt a = null;
+    	GinormousInt b = null;
+    	GinormousInt c = null;
     	int temp = Integer.parseInt(args[0]);
 		if (args.length == 1) {
 			if (temp <= 2) {
 				System.out.println(1);
 			} else {
+				a = new GinormousInt("0");
+				b = new GinormousInt("1");
 				for (int i = 3; i < temp; i++) {
-					GinormousInt c = new GinormousInt(a.add(b));
-					a = b;
-					b = c; 
+					c = new GinormousInt(a.add(b));
+					a = new GinormousInt(b.toString());
+					b = new GinormousInt(c.toString());
 				}
 
 				System.out.println(b.toString());
