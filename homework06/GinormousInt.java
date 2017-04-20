@@ -67,7 +67,9 @@ public class GinormousInt {
       System.out.println("\n Subtracting two GinormousInt. Expecting ... -812 " +  "Got: " + zeroes8.subtract(zeroes7));
       System.out.println("\n Subtracting two GinormousInt. Expecting ... -1 " +  "Got: " + zeroes9.subtract(zeroes10));
       System.out.println("\n Subtracting two GinormousInt. Expecting ... 1 " +  "Got: " + zeroes10.subtract(zeroes9));
-      System.out.println("\n Subtracting two GinormousInt. Expecting ... 25 " +  "Got: " + zeroes12.subtract(zeroes11));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... 75 " +  "Got: " + zeroes12.subtract(zeroes11));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... -75 " +  "Got: " + zeroes11.subtract(zeroes12));
+      System.out.println("\n Subtracting two GinormousInt. Expecting ... 0 " +  "Got: " + zeroes11.subtract(zeroes11));
 
       GinormousInt one = new GinormousInt("1");
       GinormousInt two = new GinormousInt("2");
@@ -308,31 +310,55 @@ public class GinormousInt {
          }
       }
 
-      // Subtracts if one is positive and one is negative
-      if (isPositive() == true && g.isPositive() == false || isPositive() == false && g.isPositive() == true) {
-         if (compareTo(g) == 1 || compareTo(g) == 0) {
-            for (int i = 0; i < smallerArray.length; i++) {
-               combineArray[combineArray.length - 1 - i] -= smallerArray[smallerArray.length - 1 - i];
-            }
-
-            for (int i = 0; i < combineArray.length; i++) {
-               if (combineArray[combineArray.length - 1 - i] < 0) {
-                  combineArray[combineArray.length - 2 - i] -= 1;
-                  combineArray[combineArray.length - 1 - i] += 10;
-               }
-            }
-
-            answer = Arrays.toString(combineArray);
-         } else {
-            answer = "-" + Arrays.toString(combineArray); 
+      // Subtracts if first one is positive and second is negative
+      if (isPositive() == true && g.isPositive() == false) {
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] += smallerArray[smallerArray.length - 1 - i];
          }
-      }
 
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] > 9) {
+               combineArray[combineArray.length - 2 - i] += 1;
+               combineArray[combineArray.length - 1 - i] -= 10;
+            }
+         }         
+         answer = Arrays.toString(combineArray);
+      } 
+
+      // Subtracts if first one is negative and second is positive
+      if (isPositive() == false && g.isPositive() == true) {
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] += smallerArray[smallerArray.length - 1 - i];
+         }
+
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] > 9) {
+               combineArray[combineArray.length - 2 - i] += 1;
+               combineArray[combineArray.length - 1 - i] -= 10;
+            }
+         }
+
+         answer = "-" + Arrays.toString(combineArray);
+      }
 
       //Subtracts Both negative numbers
       if (isPositive() == false && g.isPositive() == false) {
-         add(g);
-         answer = "-" + Arrays.toString(ginormousArray); 
+         for (int i = 0; i < smallerArray.length; i++) {
+            combineArray[combineArray.length - 1 - i] -= smallerArray[smallerArray.length - 1 - i];
+         }
+
+         for (int i = 0; i < combineArray.length; i++) {
+            if (combineArray[combineArray.length - 1 - i] < 0) {
+               combineArray[combineArray.length - 2 - i] -= 1;
+               combineArray[combineArray.length - 1 - i] += 10;
+            }
+         }
+
+         if (compareTo(g) == 1 || compareTo(g) == 0) {
+            answer = "-" + Arrays.toString(combineArray);            
+         } else {
+            answer = Arrays.toString(combineArray);
+         }
       }
 
       return answer;  
