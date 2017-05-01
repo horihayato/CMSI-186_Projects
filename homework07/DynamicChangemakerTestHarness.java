@@ -1,3 +1,18 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File name     :  DynamicChangemakerTestHarness.java
+ *  Purpose       :  Provides a class defining methods for the DynamicChangemakerTestHarness class
+ *  @author       :  Hayato Hori
+ *  Date written  :  2017-05-02
+ *  Description   :  This class provides a bunch of methods which may be useful for the DynamicChangemakerTestHarness class
+ *                   for Homework 7.  Includes the following:
+ *
+ *  Notes         :  Everything should work fine!
+ *  Warnings      :  None
+ *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
 public class DynamicChangemakerTestHarness {
 
     private static int attempts = 0;
@@ -55,6 +70,78 @@ public class DynamicChangemakerTestHarness {
 
         try {
             displaySuccessIfTrue(4 == result.getElement(3));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        int[] randomDenominations = new int[] { 3, 5, 8, 11 };
+
+        Tuple result1 = DynamicChangemaker.makeChangeWithDynamicProgramming(randomDenominations, 55);
+        try {
+            displaySuccessIfTrue(0 == result1.getElement(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(0 == result1.getElement(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(0 == result1.getElement(2));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(5 == result1.getElement(3));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        int[] randomDenominations1 = new int[] { 3, 5, 8, 11 };
+
+        Tuple result2 = DynamicChangemaker.makeChangeWithDynamicProgramming(randomDenominations, 7);
+        try {
+            displaySuccessIfTrue(result2.isImpossible());
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        int[] randomDenominations2 = new int[] { 3, 5, 8, 11 };
+
+        Tuple result3 = DynamicChangemaker.makeChangeWithDynamicProgramming(randomDenominations, 1234234);
+        try {
+            displaySuccessIfTrue(0 == result3.getElement(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(3 == result3.getElement(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(1 == result3.getElement(2));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(112201 == result3.getElement(3));
         } catch (Exception e) {
             e.printStackTrace();
             displayFailure();
