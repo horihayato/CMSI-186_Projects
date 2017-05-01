@@ -1,3 +1,16 @@
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *  File name     :  DynamicChangemaker.java
+ *  Purpose       :  Provides a class defining methods for the DynamicChangemaker class
+ *  @author       :  Hayato Hori
+ *  Date written  :  2017-05-02
+ *  Description   :  This class provides a bunch of methods which may be useful for the DynamicChangemaker class
+ *                   for Homework 7.  Includes the following:
+ *
+ *  Notes         :  Everything should work fine!
+ *  Warnings      :  None
+ *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 public class DynamicChangemaker {
 
     public static void main(String[] args) {
