@@ -93,6 +93,10 @@ public class DynamicChangemaker {
                 if (i > 0) {
                     if (table[i][j].isImpossible() && !table[i - 1][j].isImpossible()) {
                         table[i][j] = table[i - 1][j];
+                    } else if (!table[i][j].isImpossible() && !table[i - 1][j].isImpossible()) {
+                        if (table[i][j].total() > table[i - 1][j].total()) {
+                            table[i][j] = table[i - 1][j];
+                        }
                     }
 
                     System.out.println(table[i][j].toString());
