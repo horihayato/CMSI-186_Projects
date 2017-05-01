@@ -73,6 +73,7 @@ public class DynamicChangemaker {
                     } else {
                         table[i][j] = Tuple.IMPOSSIBLE;    
                     }
+                    System.out.println(table[i][j].toString());
                 } else {
                     int remainder = j - denominations[i];
                     table[i][j] = new Tuple (denominations.length);
@@ -88,15 +89,17 @@ public class DynamicChangemaker {
                     System.out.println(table[i][j].toString());
                 }
 
+                // Look up and see if there is anything above. If so, bring it down to current array
                 if (i > 0) {
-                    if (table[i][j].total() > table[i - 1][j].total()) {
-                        answer = table[i][j];
+                    if (table[i][j].isImpossible() && !table[i - 1][j].isImpossible()) {
+                        table[i][j] = table[i - 1][j];
                     }
 
-                    if (table[i - 1][j] != null) {
-                        table[i][j] = table[i - 1][j];             
-                    }
+                    System.out.println(table[i][j].toString());
                 }
+
+                answer = table[i][j];
+
             }
         }
         return answer;
